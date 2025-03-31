@@ -1,18 +1,20 @@
-🧮 Ferramentas de Cálculo para Redes de Computadores
-Este repositório reúne ferramentas interativas e utilitários voltados para cálculos essenciais em redes sem fio. O objetivo é apoiar estudantes, professores e profissionais da área com soluções práticas para temas como:
+# 🧮 Ferramentas de Cálculo para Redes de Computadores
 
-- Conversões de unidades (MHz, GHz, Hz)
+Este repositório reúne ferramentas interativas e utilitários voltados para **cálculos essenciais em redes sem fio**. O objetivo é apoiar **estudantes, professores e profissionais** da área com soluções práticas para temas como:
 
-- Cálculo de largura de banda
+### 🔧 Funcionalidades incluídas:
 
-- Determinação de comprimento de onda
+- ✅ Conversões de unidades (MHz, GHz, Hz)  
+- ✅ Cálculo de largura de banda  
+- ✅ Determinação de comprimento de onda  
+- ✅ Endereçamento IP e sub-redes  
+- ✅ Tempo de propagação e latência  
+- ✅ Tabelas de roteamento e CIDR  
 
-- Endereçamento IP e sub-redes
+As ferramentas são desenvolvidas com **HTML5, CSS e JavaScript**, o que permite sua utilização diretamente em navegadores, facilitando a aplicação em **ambientes educacionais**, como o **Moodle** ou **GitHub Pages**.
 
-- Tempo de propagação e latência
+---
 
-- Tabelas de roteamento e CIDR
+[## 📌 Ferramenta 1: Cálculo de Comprimento de Onda](https://jairoalmeid.github.io/WiFi_Toolkit/Calc_Comprimento_de_onda.html)
 
-As ferramentas são desenvolvidas em HTML5, CSS e JavaScript, permitindo fácil visualização e uso em navegadores e ambientes educacionais como o Moodle.
-
-Desenvolvido por: Prof. Jairo Almeida
+**Desenvolvido por:** [Prof. Jairo Almeida](https://github.com/jairoalmeid)
