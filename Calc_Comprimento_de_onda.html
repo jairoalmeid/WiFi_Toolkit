@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Comprimento de Onda</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .explicacao {
+      background-color: #eaf2f8;
+      border-left: 6px solid #2980b9;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input, select {
+      padding: 8px;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 15px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2c80b4;
+    }
+
+    .resultado {
+      background-color: #dff0d8;
+      padding: 15px;
+      margin-top: 20px;
+      border-left: 6px solid #3c763d;
+      border-radius: 6px;
+    }
+
+    canvas {
+      margin-top: 30px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .assinatura {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .assinatura a {
+      text-decoration: none;
+      color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Calculadora de Comprimento de Onda</h1>
+
+  <div class="explicacao">
+    <p><strong>O que é comprimento de onda?</strong></p>
+    <p>O comprimento de onda (<strong>λ</strong>) é a distância entre dois picos consecutivos de uma onda. No contexto das redes e telecomunicações, ele representa o espaço físico que uma onda eletromagnética percorre em um ciclo completo. A relação entre frequência e comprimento de onda é inversa: quanto maior a frequência, menor o comprimento da onda.</p>
+  
+    <p><strong>Fórmula:</strong> λ = c / f, onde:</p>
+    <ul>
+      <li><strong>λ</strong> = comprimento de onda (em metros)</li>
+      <li><strong>c</strong> = velocidade da luz (≈ 3×10⁸ m/s)</li>
+      <li><strong>f</strong> = frequência (em Hz)</li>
+    </ul>
+  
+    <hr style="margin: 20px 0;">
+  
+    <p><strong>Relação entre comprimento de onda e propagação do sinal:</strong></p>
+    <p>Quanto <strong>maior o comprimento de onda</strong> (ou seja, menor a frequência), maior será a <strong>capacidade de penetração e alcance do sinal</strong>. Ondas maiores conseguem atravessar paredes e obstáculos com mais facilidade.</p>
+  
+    <p>Já sinais com <strong>frequência mais alta</strong> (e portanto comprimento de onda menor) têm maior capacidade de transportar dados, mas sofrem mais interferência e têm menor alcance.</p>
+  
+    <p><strong>🔍 Aplicação no Wi-Fi:</strong></p>
+    <ul>
+      <li>O Wi-Fi de <strong>2,4 GHz</strong> tem comprimento de onda maior (~12,5 cm), proporcionando <strong>melhor alcance e penetração</strong>, ideal para ambientes com muitas paredes.</li>
+      <li>O Wi-Fi de <strong>5 GHz</strong> tem comprimento de onda menor (~6 cm), o que permite <strong>velocidades mais altas</strong>, mas com alcance mais limitado.</li>
+    </ul>
+  
+    <p>Compreender essa relação é essencial para planejar redes sem fio eficientes em ambientes residenciais, empresariais ou acadêmicos.</p>
+  </div>
+  
+
+  <h2>Como usar a ferramenta:</h2>
+  <ol>
+    <li>Digite o valor da frequência desejada.</li>
+    <li>Selecione a unidade (MHz ou GHz).</li>
+    <li>Clique no botão para visualizar o comprimento de onda calculado e o gráfico representativo.</li>
+  </ol>
+
+  <label for="frequencia">Frequência:</label>
+  <input type="number" id="frequencia" placeholder="Digite a frequência">
+
+  <label for="unidade">Unidade:</label>
+  <select id="unidade">
+    <option value="MHz">Megahertz (MHz)</option>
+    <option value="GHz">Gigahertz (GHz)</option>
+  </select>
+
+  <button onclick="calcular()">Calcular e Exibir Gráfico</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <canvas id="ondaCanvas" width="600" height="200"></canvas>
+
+  <div class="assinatura">
+    Desenvolvido por: <a href="https://github.com/jairoalmeid" target="_blank">Prof. Jairo Almeida</a>
+  </div>
+
+  <script>
+    function calcular() {
+      const c = 3e8; // velocidade da luz
+      let f = parseFloat(document.getElementById("frequencia").value);
+      const unidade = document.getElementById("unidade").value;
+
+      if (isNaN(f) || f <= 0) {
+        document.getElementById("resultado").innerHTML = "Por favor, insira uma frequência válida.";
+        return;
+      }
+
+      if (unidade === "MHz") f *= 1e6;
+      if (unidade === "GHz") f *= 1e9;
+
+      const lambda = c / f;
+      const lambda_cm = lambda * 100;
+
+      document.getElementById("resultado").innerHTML = `
+        <p><strong>Resultado:</strong></p>
+        <ul>
+          <li>Notação científica: <strong>${lambda.toExponential(3)} m</strong></li>
+          <li>Decimal: <strong>${lambda.toFixed(6)} metros</strong></li>
+          <li>Centímetros: <strong>${lambda_cm.toFixed(2)} cm</strong></li>
+        </ul>
+      `;
+
+      desenharOnda(lambda);
+    }
+
+    function desenharOnda(lambda) {
+      const canvas = document.getElementById("ondaCanvas");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const largura = canvas.width;
+      const altura = canvas.height / 2;
+      const amplitude = 30;
+
+      // Simular 1 microssegundo (1e-6 s) de tempo para o gráfico
+      const tempoJanela = 1e-6; // 1 microssegundo
+      const f = 3e8 / lambda; // frequência calculada a partir de λ = c / f
+      const numCiclos = f * tempoJanela; // número real de ciclos em 1 µs
+
+      // Escala X: esticar os ciclos pela largura do canvas
+      ctx.beginPath();
+      ctx.moveTo(0, altura);
+
+      for (let x = 0; x <= largura; x++) {
+        const t = (x / largura) * tempoJanela; // tempo proporcional ao pixel
+        const y = amplitude * Math.sin(2 * Math.PI * f * t) + altura;
+        ctx.lineTo(x, y);
+      }
+
+      ctx.strokeStyle = "#3498db";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Desenhar λ (um ciclo) visualmente
+      const cicloDuraSegundos = 1 / f;
+      const cicloPixel = (cicloDuraSegundos / tempoJanela) * largura;
+
+      ctx.beginPath();
+      ctx.moveTo(50, altura + amplitude + 20);
+      ctx.lineTo(50 + cicloPixel, altura + amplitude + 20);
+      ctx.strokeStyle = "#e74c3c";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = "#e74c3c";
+      ctx.font = "14px Arial";
+      ctx.fillText("λ (um ciclo)", 50 + cicloPixel / 2 - 30, altura + amplitude + 40);
+    }
+
+
+
+  </script>
+
+</body>
+</html>
