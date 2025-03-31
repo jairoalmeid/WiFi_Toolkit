@@ -1,4 +1,4 @@
-# 🧮 Ferramentas de Cálculo para Redes de Computadores
+# Ferramentas de Cálculo para Redes de Computadores
 
 Este repositório reúne ferramentas interativas e utilitários voltados para **cálculos essenciais em redes sem fio**. O objetivo é apoiar **estudantes, professores e profissionais** da área com soluções práticas para temas como:
 
@@ -15,6 +15,6 @@ As ferramentas são desenvolvidas com **HTML5, CSS e JavaScript**, o que permite
 
 ---
 
-### [📌 Ferramenta 1: Cálculo de Comprimento de Onda](https://jairoalmeid.github.io/WiFi_Toolkit/Calc_Comprimento_de_onda.html)
+### [Ferramenta 1: Cálculo de Comprimento de Onda](https://jairoalmeid.github.io/WiFi_Toolkit/Calc_Comprimento_de_onda.html)
 
 **Desenvolvido por:** [Prof. Jairo Almeida](https://github.com/jairoalmeid)
